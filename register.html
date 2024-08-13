@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ลงทะเบียนจองทัวร์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold mb-6">ลงทะเบียนจองทัวร์</h1>
+        <form action="/submit_registration" method="post" class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+                <label for="tour-size" class="block text-lg font-medium mb-2">ประเภทกลุ่มทัวร์:</label>
+                <select id="tour-size" name="tour-size" class="w-full p-2 border rounded">
+                    <option value="small">กลุ่มเล็ก (10 - 15 คน)</option>
+                    <option value="standard">กลุ่มมาตรฐาน (35 - 40 คน)</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="self-ticket" class="block text-lg font-medium mb-2">ต้องการซื้อบัตรโดยสารเครื่องบินเอง (Join Land):</label>
+                <input type="checkbox" id="self-ticket" name="self-ticket" class="mr-2">
+                <span class="text-gray-700">ใช่</span>
+            </div>
+            <div class="mb-4">
+                <label for="members" class="block text-lg font-medium mb-2">จำนวนผู้ร่วมเดินทาง:</label>
+                <input type="number" id="members" name="members" class="w-full p-2 border rounded">
+            </div>
+            <div class="mb-4">
+                <label for="name" class="block text-lg font-medium mb-2">ชื่อผู้ติดต่อ:</label>
+                <input type="text" id="name" name="name" class="w-full p-2 border rounded">
+            </div>
+            <div class="mb-4">
+                <label for="tel" class="block text-lg font-medium mb-2">เบอร์ผู้ติดต่อ:</label>
+                <input type="tel" id="tel" name="tel" class="w-full p-2 border rounded">
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">ลงทะเบียน</button>
+        </form>
+        <div class="footer p-4">
+            <p class="text-center text-lg font-bold">รหัสนิสิต: 6431321121 ชื่อ-นามสกุล: ธนวุฒิ ตันธนศักดา</p>
+        </div>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>

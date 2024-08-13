@@ -1,0 +1,50 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Page Test
+      id: page-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Page Test
+        setup-command: npm install
+        command: npm run test -- case1.test.tsx
+        timeout: 10
+        max-score: 1
+    - name: Banner Test
+      id: banner-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Banner Test
+        setup-command: npm install
+        command: npm run test -- case2.test.tsx
+        timeout: 10
+        max-score: 1
+    - name: Card Test
+      id: card-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Card Test
+        setup-command: npm install
+        command: npm run test -- case3.test.tsx
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        PAGE-TEST_RESULTS: "${{steps.page-test.outputs.result}}"
+        BANNER-TEST_RESULTS: "${{steps.banner-test.outputs.result}}"
+        CARD-TEST_RESULTS: "${{steps.card-test.outputs.result}}"
+      with:
+        runners: page-test,banner-test,card-test
